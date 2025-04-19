@@ -1,3 +1,6 @@
+import { Button } from '../ui/Button'
+import { Input } from '../ui/Input'
+
 export const Hero = () => {
 	return (
 		<div className='flex border'>
@@ -14,8 +17,8 @@ export const Hero = () => {
 				<div className='mt-[10vh] flex w-full items-center gap-2'>
 					projectinbio.com/
 				</div>
-				<input type='text' />
-				<button>Criar agora</button>
+				<Input type='text' />
+				<Button>Criar agora</Button>
 			</div>
 
 			<div className='bg-[radial-gradient(circle_at_50%_50%, #4B2DBB, transparent_55% flex w-full items-center justify-center'>
