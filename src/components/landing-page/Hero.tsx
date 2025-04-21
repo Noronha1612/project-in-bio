@@ -1,3 +1,4 @@
+import { ProjectCard } from '../commons/ProjectCard'
 import { TotalVisits } from '../commons/TotalVisits'
 import { UserCard } from '../commons/UserCard'
 import { Button } from '../ui/Button'
@@ -23,7 +24,7 @@ export const Hero = () => {
 				</div>
 			</div>
 
-			<div className='flex w-full items-center justify-center overflow-visible bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_25%)]'>
+			<div className='flex w-full items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_50%)]'>
 				<div className='relative'>
 					<UserCard />
 
@@ -32,10 +33,10 @@ export const Hero = () => {
 					</div>
 
 					<div className='absolute top-[20%] -left-[45%] -z-10'>
-						{/* <ProjectCard /> */}
+						<ProjectCard />
 					</div>
 					<div className='absolute -top-[5%] -left-[55%] -z-10'>
-						{/* <ProjectCard /> */}
+						<ProjectCard />
 					</div>
 				</div>
 			</div>
