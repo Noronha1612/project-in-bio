@@ -33,10 +33,20 @@ export const Hero = () => {
 					</div>
 
 					<div className='absolute top-[20%] -left-[45%] -z-10'>
-						<ProjectCard />
+						<ProjectCard
+							clicks={23}
+							name='Projeto 2'
+							description='Descrição super detalhada do que o projeto faz'
+							image='/project2.jpg'
+						/>
 					</div>
 					<div className='absolute -top-[5%] -left-[55%] -z-10'>
-						<ProjectCard />
+						<ProjectCard
+							clicks={10}
+							name='Projeto 1'
+							description='Descrição super detalhada do que o projeto faz'
+							image='/project1.jpg'
+						/>
 					</div>
 				</div>
 			</div>
