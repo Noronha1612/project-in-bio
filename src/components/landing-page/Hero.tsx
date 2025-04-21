@@ -1,3 +1,4 @@
+import { TotalVisits } from '../commons/TotalVisits'
 import { UserCard } from '../commons/UserCard'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
@@ -27,7 +28,7 @@ export const Hero = () => {
 					<UserCard />
 
 					<div className='absolute -right-[45%] -bottom-[7%]'>
-						{/* <TotalVisits /> */}
+						<TotalVisits />
 					</div>
 
 					<div className='absolute top-[20%] -left-[45%] -z-10'>
