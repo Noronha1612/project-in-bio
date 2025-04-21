@@ -1,9 +1,10 @@
+import { UserCard } from '../commons/UserCard'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 
 export const Hero = () => {
 	return (
-		<div className='flex border'>
+		<div className='flex h-screen'>
 			<div className='mt-[35vh] flex w-full flex-col gap-2'>
 				<h1 className='text-5xl leading-[64px] font-bold text-white'>
 					Seus projetos e redes sociais em um único link
@@ -15,15 +16,15 @@ export const Hero = () => {
 				</h2>
 
 				<div className='mt-[10vh] flex w-full items-center gap-2'>
-					projectinbio.com/
+					<span className='text-xl text-white'>projectinbio.com/</span>
+					<Input />
+					<Button>Criar agora</Button>
 				</div>
-				<Input type='text' />
-				<Button>Criar agora</Button>
 			</div>
 
-			<div className='bg-[radial-gradient(circle_at_50%_50%, #4B2DBB, transparent_55% flex w-full items-center justify-center'>
+			<div className='flex w-full items-center justify-center overflow-visible bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_25%)]'>
 				<div className='relative'>
-					{/* <UserCard /> */}
+					<UserCard />
 
 					<div className='absolute -right-[45%] -bottom-[7%]'>
 						{/* <TotalVisits /> */}
