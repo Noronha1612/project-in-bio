@@ -7,7 +7,7 @@ import { Input } from '../ui/Input'
 export const Hero = () => {
 	return (
 		<div className='flex h-screen'>
-			<div className='mt-[35vh] flex w-full flex-col gap-2'>
+			<div className='mt-[30vh] flex w-full flex-col gap-2'>
 				<h1 className='text-5xl leading-[64px] font-bold text-white'>
 					Seus projetos e redes sociais em um único link
 				</h1>

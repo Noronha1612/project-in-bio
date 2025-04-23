@@ -13,4 +13,6 @@
 	--color-accent-purple: #4b2dbb;
 	--color-accent-green: #87bb2d;
 	--color-accent-pink: #b5446b;
+
+	--spacing-full-h-no-header: calc(100vh - 128px);
 }

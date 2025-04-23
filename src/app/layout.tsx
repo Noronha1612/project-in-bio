@@ -1,4 +1,5 @@
-import '@/app/global.css'
+import { Header } from '@/components/commons/Header'
+import './global.css'
 
 import { Red_Hat_Display } from 'next/font/google'
 
@@ -17,7 +18,8 @@ export default function RootLayout({
 			<body
 				className={`${redHatDisplay.className} bg-background-primary text-content-body`}
 			>
-				{children}
+				<Header />
+				<div className='mx-auto mt-32 max-w-7xl'>{children}</div>
 			</body>
 		</html>
 	)
