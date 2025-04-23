@@ -24,7 +24,7 @@ export const Hero = () => {
 				</div>
 			</div>
 
-			<div className='flex w-full items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_50%)]'>
+			<div className='flex w-full items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_45%)]'>
 				<div className='relative'>
 					<UserCard />
 
