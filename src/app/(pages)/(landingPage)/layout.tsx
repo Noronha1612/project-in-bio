@@ -1,4 +1,4 @@
-import './global.css'
+import '@/app/global.css'
 
 import { Red_Hat_Display } from 'next/font/google'
 
