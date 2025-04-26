@@ -2,6 +2,7 @@ import { ProjectCard } from '@/components/commons/ProjectCard'
 import { TotalVisits } from '@/components/commons/TotalVisits'
 import { UserCard } from '@/components/commons/UserCard'
 import { Plus } from 'lucide-react'
+import Link from 'next/link'
 
 const mockedProjects = [
 	{
@@ -72,9 +73,11 @@ export default async function Profile({
 			<div className='bg-background-tertiary fixed top-[128px] left-0 flex w-full items-center justify-center gap-1 py-2'>
 				<span>Você está usando a versão trial.</span>
 
-				<button className='text-accent-green cursor-pointer font-bold hover:brightness-110'>
-					Faça o upgrade agora!
-				</button>
+				<Link href={`${profileId}/upgrade`}>
+					<button className='text-accent-green cursor-pointer font-bold hover:brightness-110'>
+						Faça o upgrade agora!
+					</button>
+				</Link>
 			</div>
 
 			<div className='flex h-min w-1/2 justify-center'>
