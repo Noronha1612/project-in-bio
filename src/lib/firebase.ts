@@ -5,7 +5,7 @@ import { getStorage } from 'firebase-admin/storage'
 
 const PROJECT_ID = process.env.FIREBASE_PROJECT_ID
 const CLIENT_EMAIL = process.env.FIREBASE_CLIENT_EMAIL
-const PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY
+const PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY_BASE64
 const STORAGE_BUCKET = process.env.FIREBASE_STORAGE_BUCKET
 
 if (!PROJECT_ID || !CLIENT_EMAIL || !PRIVATE_KEY || !STORAGE_BUCKET) {
