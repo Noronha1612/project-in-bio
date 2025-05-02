@@ -5,8 +5,6 @@ import { manageAuth } from '@/actions/manage-auth'
 export const Header = async () => {
 	const session = await auth()
 
-	console.log(session)
-
 	return (
 		<header className='bg-background-primary border-border-primary fixed top-0 right-0 left-0 z-50 w-screen border border-b'>
 			<div className='mx-auto flex max-w-7xl items-center justify-between py-10'>

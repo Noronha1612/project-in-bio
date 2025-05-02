@@ -1,6 +1,5 @@
-import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
 import { Rocket } from 'lucide-react'
+import { CreateLinkForm } from './create-link-form'
 
 export default function Create() {
 	return (
@@ -11,16 +10,7 @@ export default function Create() {
 				<Rocket className='size-10' />
 			</div>
 
-			<form action='' className='flex w-full items-center gap-2'>
-				<span>projectinbio.com/</span>
-
-				<Input />
-				<Button className='w-[126px]'>Criar</Button>
-			</form>
-
-			<div>
-				<span className='text-accent-pink'>Erro de exemplo</span>
-			</div>
+			<CreateLinkForm />
 		</div>
 	)
 }

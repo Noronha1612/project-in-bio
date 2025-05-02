@@ -1,9 +1,11 @@
+import { Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { PropsWithChildren } from 'react'
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	variant?: 'primary' | 'secondary' | 'ghost'
 	fullWidth?: boolean
+	isLoading?: boolean
 }
 
 export const Button = ({
@@ -11,13 +13,14 @@ export const Button = ({
 	className,
 	variant = 'primary',
 	fullWidth = false,
+	isLoading = false,
 	...props
 }: PropsWithChildren<ButtonProps>) => {
 	return (
 		<button
 			{...props}
 			className={cn(
-				'cursor-pointer rounded-xl p-3 font-bold whitespace-nowrap text-white hover:opacity-95 disabled:opacity-70',
+				'flex h-12 cursor-pointer items-center justify-center rounded-xl p-3 font-bold whitespace-nowrap text-white hover:opacity-95 disabled:opacity-70',
 				fullWidth && 'w-full',
 				variant === 'primary' && 'bg-accent-purple',
 				variant === 'secondary' && 'bg-background-tertiary',
@@ -25,7 +28,7 @@ export const Button = ({
 				className
 			)}
 		>
-			{children}
+			{isLoading ? <Loader2 className='size-4 animate-spin' /> : children}
 		</button>
 	)
 }
