@@ -13,8 +13,7 @@ export const createLink = async (link: string) => {
 
 	try {
 		await db.collection('profiles').doc(link).set({
-			link,
-			userId: '',
+			userId: session.user.id,
 			totalVisits: 0,
 			createdAt: Timestamp.now().toMillis(),
 		})

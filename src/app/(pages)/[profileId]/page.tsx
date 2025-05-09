@@ -1,8 +1,11 @@
 import { ProjectCard } from '@/components/commons/ProjectCard'
 import { TotalVisits } from '@/components/commons/TotalVisits'
 import { UserCard } from '@/components/commons/UserCard'
-import { Plus } from 'lucide-react'
+import { auth } from '@/lib/auth'
+import { getProfileData } from '@/server/getProfileData'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { NewProject } from './NewProject'
 
 const mockedProjects = [
 	{
@@ -66,7 +69,16 @@ export default async function Profile({
 }: {
 	params: Promise<{ profileId: string }>
 }) {
+	const session = await auth()
 	const { profileId } = await params
+
+	const profileData = await getProfileData(profileId)
+
+	if (!profileData) {
+		return notFound()
+	}
+
+	const isOwner = profileData.userId === session?.user?.id
 
 	return (
 		<div className='min-h-full-h-no-header relative flex gap-12 overflow-hidden p-20 pb-24'>
@@ -89,11 +101,7 @@ export default async function Profile({
 					<ProjectCard key={project.name} {...project} />
 				))}
 
-				<button className='bg-background-secondary flex h-[132px] w-[340px] cursor-pointer items-center justify-center gap-2 rounded-[20px] border-dashed hover:border'>
-					<Plus className='text-accent-green size-10' />
-
-					<span>Novo projeto</span>
-				</button>
+				{isOwner && <NewProject />}
 			</div>
 
 			<div className='fixed right-1/2 bottom-4 w-min translate-x-1/2'>
