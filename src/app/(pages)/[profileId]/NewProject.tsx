@@ -1,11 +1,19 @@
+import { NewProjectModal } from '@/components/profile-page/NewProjectModal'
+import { ModalTrigger } from '@/components/ui/Modal'
 import { Plus } from 'lucide-react'
 
-export const NewProject = () => {
-	return (
-		<button className='bg-background-secondary flex h-[132px] w-[340px] cursor-pointer items-center justify-center gap-2 rounded-[20px] border-dashed hover:border'>
-			<Plus className='text-accent-green size-10' />
+interface NewProjectProps {
+	profileId: string
+}
 
-			<span>Novo projeto</span>
-		</button>
+export const NewProject = ({ profileId }: NewProjectProps) => {
+	return (
+		<ModalTrigger content={<NewProjectModal profileId={profileId} />}>
+			<button className='bg-background-secondary flex h-[132px] w-[340px] cursor-pointer items-center justify-center gap-2 rounded-[20px] border-dashed hover:border'>
+				<Plus className='text-accent-green size-10' />
+
+				<span>Novo projeto</span>
+			</button>
+		</ModalTrigger>
 	)
 }

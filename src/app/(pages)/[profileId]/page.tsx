@@ -7,63 +7,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { NewProject } from './NewProject'
 
-const mockedProjects = [
-	{
-		clicks: 31,
-		name: 'Recipe Finder',
-		description: 'Discover and save your favorite recipes',
-		image: '/project1.jpg',
-	},
-	{
-		clicks: 45,
-		name: 'Task Manager',
-		description: 'Organize your daily tasks efficiently',
-		image: '/project1.jpg',
-	},
-	{
-		clicks: 28,
-		name: 'Weather App',
-		description: 'Real-time weather updates and forecasts',
-		image: '/project1.jpg',
-	},
-	{
-		clicks: 52,
-		name: 'Budget Tracker',
-		description: 'Manage your finances with ease',
-		image: '/project1.jpg',
-	},
-	{
-		clicks: 19,
-		name: 'Fitness Tracker',
-		description: 'Monitor your workouts and progress',
-		image: '/project1.jpg',
-	},
-	{
-		clicks: 37,
-		name: 'Book Library',
-		description: 'Digital library for your favorite books',
-		image: '/project1.jpg',
-	},
-	{
-		clicks: 41,
-		name: 'Travel Planner',
-		description: 'Plan your perfect trip itinerary',
-		image: '/project1.jpg',
-	},
-	{
-		clicks: 23,
-		name: 'Language Learning',
-		description: 'Master new languages interactively',
-		image: '/project1.jpg',
-	},
-	{
-		clicks: 34,
-		name: 'Photo Gallery',
-		description: 'Store and organize your memories',
-		image: '/project1.jpg',
-	},
-]
-
 export default async function Profile({
 	params,
 }: {
@@ -79,6 +22,7 @@ export default async function Profile({
 	}
 
 	const isOwner = profileData.userId === session?.user?.id
+	const projects = profileData.projects || [] // Use projects from profileData
 
 	return (
 		<div className='min-h-full-h-no-header relative flex gap-12 overflow-hidden p-20 pb-24'>
@@ -97,11 +41,11 @@ export default async function Profile({
 			</div>
 
 			<div className='flex w-full flex-wrap content-start justify-center gap-4 overflow-y-auto'>
-				{mockedProjects.map((project) => (
+				{projects.map((project) => (
 					<ProjectCard key={project.name} {...project} />
 				))}
 
-				{isOwner && <NewProject />}
+				{isOwner && <NewProject profileId={profileId} />}
 			</div>
 
 			<div className='fixed right-1/2 bottom-4 w-min translate-x-1/2'>
