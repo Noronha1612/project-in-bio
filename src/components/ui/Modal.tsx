@@ -1,7 +1,13 @@
 'use client'
 
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
-import { useRef, useState, PropsWithChildren } from 'react'
+import {
+	useRef,
+	useState,
+	PropsWithChildren,
+	createContext,
+	useContext,
+} from 'react'
 import { createPortal } from 'react-dom'
 
 interface ModalTriggerProps {
@@ -30,6 +36,12 @@ export const ModalTrigger = ({
 	)
 }
 
+interface ModalContextProps {
+	onClose: () => void
+}
+
+const ModalContext = createContext({} as ModalContextProps)
+
 export const Modal = ({
 	children,
 	isOpen,
@@ -46,9 +58,27 @@ export const Modal = ({
 	}
 
 	return createPortal(
-		<div className='fixed inset-0 z-50 flex items-center justify-center bg-[#787878]/10 backdrop-blur-xs'>
-			<div ref={ref}>{children}</div>
-		</div>,
+		<ModalContextProvider onClose={onClose}>
+			<div className='fixed inset-0 z-50 flex items-center justify-center bg-[#787878]/10 backdrop-blur-xs'>
+				<div ref={ref}>{children}</div>
+			</div>
+		</ModalContextProvider>,
+
 		document.body
 	)
 }
+
+const ModalContextProvider = ({
+	children,
+	onClose,
+}: PropsWithChildren<{
+	onClose: () => void
+}>) => {
+	return (
+		<ModalContext.Provider value={{ onClose }}>
+			{children}
+		</ModalContext.Provider>
+	)
+}
+
+export const useModalContext = () => useContext(ModalContext)
