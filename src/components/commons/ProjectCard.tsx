@@ -12,7 +12,7 @@ export const ProjectCard = ({
 	image,
 }: ProjectCardProps) => {
 	return (
-		<div className='bg-background-secondary hover:border-border-secondary flex h-[132px] w-[340px] gap-5 rounded-[20px] border border-transparent p-3'>
+		<div className='bg-background-secondary hover:border-border-secondary flex h-[132px] w-[340px] cursor-pointer gap-5 rounded-[20px] border border-transparent p-3'>
 			<div className='flex size-24 shrink-0 overflow-hidden rounded-md'>
 				<img src={image} alt={name} className='h-full w-full object-cover' />
 			</div>

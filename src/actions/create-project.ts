@@ -5,6 +5,7 @@ import { db } from '@/lib/firebase'
 import { projectSchema } from '@/schemas/projectSchema'
 import { ZodError } from 'zod'
 import { createProjectImage } from './create-project-image'
+import { revalidatePath } from 'next/cache'
 
 interface CreateProjectResponse {
 	success: boolean
@@ -46,6 +47,8 @@ export const createProject = async (
 			...parsedPayload,
 			image: imageUrl,
 		})
+
+		revalidatePath(`/${profileId}`)
 
 		return { success: true, error: '' }
 	} catch (err) {

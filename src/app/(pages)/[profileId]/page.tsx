@@ -21,6 +21,8 @@ export default async function Profile({
 		return notFound()
 	}
 
+	console.log(profileData)
+
 	const isOwner = profileData.userId === session?.user?.id
 	const projects = profileData.projects || [] // Use projects from profileData
 
@@ -42,7 +44,13 @@ export default async function Profile({
 
 			<div className='flex w-full flex-wrap content-start justify-center gap-4 overflow-y-auto'>
 				{projects.map((project) => (
-					<ProjectCard key={project.name} {...project} />
+					<ProjectCard
+						key={project.id}
+						name={project.title}
+						image={project.image}
+						description={project.description}
+						clicks={0}
+					/>
 				))}
 
 				{isOwner && <NewProject profileId={profileId} />}
