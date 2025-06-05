@@ -1,27 +1,31 @@
 import 'server-only'
 import { db } from '@/lib/firebase'
 import { getProjects } from './getProjects'
+import { ProfileData } from '@/models/Profile'
+import { auth } from '@/lib/auth'
 
-type Project = {
-	clicks: number
-	name: string
-	description: string
-	image: string
-}
+export const getProfileData = async () => {
+	const session = await auth()
 
-type ProfileData = {
-	userId: string
-	totalVisits: number
-	createdAt: number
-}
-
-export const getProfileData = async (profileId: string) => {
-	const snapshot = await db.collection('profiles').doc(profileId).get()
-
-	const data = {
-		...((snapshot.data() ?? {}) as ProfileData),
-		projects: await getProjects(profileId),
+	if (!session) {
+		throw new Error('User not authenticated')
 	}
 
-	return data
+	const snapshot = await db
+		.collection('profiles')
+		.where('userId', '==', session.user?.id)
+		.limit(1)
+		.get()
+
+	if (snapshot.empty) {
+		return null
+	}
+
+	const profileData = snapshot.docs[0].data() as ProfileData
+
+	return {
+		...profileData,
+		id: snapshot.docs[0].id,
+		projects: await getProjects(snapshot.docs[0].id),
+	}
 }

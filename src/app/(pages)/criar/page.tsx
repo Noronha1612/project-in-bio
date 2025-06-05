@@ -1,7 +1,17 @@
 import { Rocket } from 'lucide-react'
 import { CreateLinkForm } from './create-link-form'
+import { auth } from '@/lib/auth'
+import { redirect } from 'next/navigation'
+import { getProfileData } from '@/server/getProfileData'
 
-export default function Create() {
+export default async function Create() {
+	const session = await auth()
+	const profile = await getProfileData()
+
+	if (profile) {
+		redirect(`/${profile.id}`)
+	}
+
 	return (
 		<div className='min-h-full-h-no-header mx-auto flex max-w-xl flex-col items-center justify-center gap-10'>
 			<div className='flex items-center gap-4'>

@@ -13,7 +13,7 @@ interface NewProjectModalProps {
 }
 
 export const NewProjectModal = ({ profileId }: NewProjectModalProps) => {
-	const [image, setImage] = useState<File | null>(null)
+	const [image, setImage] = useState('')
 	const { onClose } = useModalContext()
 
 	const [state, action, pending] = useActionState(
@@ -28,12 +28,13 @@ export const NewProjectModal = ({ profileId }: NewProjectModalProps) => {
 		const file = event.target.files?.[0]
 
 		if (file) {
-			setImage(file)
+			const imageURL = URL.createObjectURL(file)
+			setImage(imageURL)
 		}
 	}
 
 	useEffect(() => {
-		setImage(null)
+		setImage('')
 
 		if (state.success) {
 			onClose()
@@ -51,14 +52,19 @@ export const NewProjectModal = ({ profileId }: NewProjectModalProps) => {
 				<div className='flex flex-col items-center gap-3 text-xs'>
 					{image ? (
 						<img
-							src={URL.createObjectURL(image)}
+							src={image}
 							alt='Preview'
-							className='h-[100px] w-[100px] rounded-xl object-cover'
+							className='h-[100px] w-[100px] rounded-xl object-cover object-center'
 						/>
 					) : (
 						// Placeholder for the image
 						<div className='bg-background-tertiary h-[100px] w-[100px] overflow-hidden rounded-xl'>
-							<button className='h-full w-full'>100x100</button>
+							<label
+								htmlFor='imageInput'
+								className='flex h-full w-full cursor-pointer items-center justify-center'
+							>
+								100x100
+							</label>
 						</div>
 					)}
 
@@ -74,7 +80,7 @@ export const NewProjectModal = ({ profileId }: NewProjectModalProps) => {
 						type='file'
 						id='imageInput'
 						accept='image/*'
-						className='hidden'
+						className='cursor-pointer'
 						name='image'
 						onChange={handleImageChange}
 					/>
@@ -130,7 +136,13 @@ export const NewProjectModal = ({ profileId }: NewProjectModalProps) => {
 			)}
 
 			<div className='flex justify-end gap-4'>
-				<button className='font-bold text-white'>Voltar</button>
+				<button
+					className='font-bold text-white'
+					type='button'
+					onClick={onClose}
+				>
+					Voltar
+				</button>
 				<Button disabled={pending} className='w-[148px]'>
 					{pending ? <Loader className='size-4' /> : 'Criar projeto'}
 				</Button>

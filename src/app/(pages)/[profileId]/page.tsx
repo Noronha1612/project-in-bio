@@ -15,13 +15,11 @@ export default async function Profile({
 	const session = await auth()
 	const { profileId } = await params
 
-	const profileData = await getProfileData(profileId)
+	const profileData = await getProfileData()
 
 	if (!profileData) {
 		return notFound()
 	}
-
-	console.log(profileData)
 
 	const isOwner = profileData.userId === session?.user?.id
 	const projects = profileData.projects || [] // Use projects from profileData
@@ -43,14 +41,8 @@ export default async function Profile({
 			</div>
 
 			<div className='flex w-full flex-wrap content-start justify-center gap-4 overflow-y-auto'>
-				{projects.map((project) => (
-					<ProjectCard
-						key={project.id}
-						name={project.title}
-						image={project.image}
-						description={project.description}
-						clicks={0}
-					/>
+				{projects.map(async (project) => (
+					<ProjectCard key={project.id} project={project} isOwner={isOwner} />
 				))}
 
 				{isOwner && <NewProject profileId={profileId} />}

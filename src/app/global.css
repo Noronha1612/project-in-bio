@@ -16,3 +16,7 @@
 
 	--spacing-full-h-no-header: calc(100vh - 128px);
 }
+
+button {
+	cursor: pointer;
+}

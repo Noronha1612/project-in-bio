@@ -1,4 +1,3 @@
-import console from 'console'
 import { z } from 'zod'
 
 const MAX_FILE_SIZE = 3 * 1024 * 1024
@@ -10,11 +9,9 @@ export const projectSchema = z.object(
 		description: z.string().min(1, { message: 'Envie uma descrição.' }),
 		url: z
 			.string({ message: 'Envie uma URL válida.' })
-			.url({ message: 'Invalid URL' }),
+			.url({ message: 'Envie uma URL válida.' }),
 		image: z.custom<File>(
 			(file) => {
-				console.log(file)
-
 				if (!(file instanceof File)) return false
 				const isValidType = ['image/jpeg', 'image/png', 'image/webp'].includes(
 					file.type
@@ -23,7 +20,8 @@ export const projectSchema = z.object(
 				return isValidType && isValidSize
 			},
 			{
-				message: 'File must be an image (JPEG, PNG, WEBP) and less than 3MB.',
+				message:
+					'O arquivo deve ser uma imagem (JPEG, PNG, WEBP) e ter menos de 3MB.',
 			}
 		),
 	},

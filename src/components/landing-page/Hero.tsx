@@ -34,18 +34,31 @@ export const Hero = () => {
 
 					<div className='absolute top-[20%] -left-[45%] -z-10'>
 						<ProjectCard
-							clicks={23}
-							name='Projeto 2'
-							description='Descrição super detalhada do que o projeto faz'
-							image='/project2.jpg'
+							clickable={false}
+							project={{
+								id: '1',
+								title: 'Meu projeto incrível',
+								description: 'Descrição super detalhada do que o projeto faz',
+								image: '/project1.jpg',
+								url: '',
+								totalVisits: 10,
+								profileId: 'profile123',
+							}}
 						/>
 					</div>
 					<div className='absolute -top-[5%] -left-[55%] -z-10'>
 						<ProjectCard
-							clicks={10}
-							name='Projeto 1'
-							description='Descrição super detalhada do que o projeto faz'
-							image='/project1.jpg'
+							clickable={false}
+							project={{
+								id: '2',
+								title: 'Meu portfolio',
+								description:
+									'Descrição do meu portfolio com todos os meus trabalhos',
+								image: '/project2.jpg',
+								url: '',
+								totalVisits: 10,
+								profileId: 'profile123',
+							}}
 						/>
 					</div>
 				</div>
