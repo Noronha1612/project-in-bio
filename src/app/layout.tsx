@@ -2,6 +2,7 @@ import { Header } from '@/components/commons/Header'
 import './global.css'
 
 import { Red_Hat_Display } from 'next/font/google'
+import { SessionProvider } from 'next-auth/react'
 
 const redHatDisplay = Red_Hat_Display({
 	weight: ['400', '500', '700'],
@@ -18,8 +19,10 @@ export default function RootLayout({
 			<body
 				className={`${redHatDisplay.className} bg-background-primary text-content-body`}
 			>
-				<Header />
-				<div className='mx-auto mt-32 max-w-7xl'>{children}</div>
+				<SessionProvider>
+					<Header />
+					<div className='mx-auto mt-32 max-w-7xl'>{children}</div>
+				</SessionProvider>
 			</body>
 		</html>
 	)

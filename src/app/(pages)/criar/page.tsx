@@ -6,7 +6,7 @@ import { getProfileData } from '@/server/getProfileData'
 
 export default async function Create() {
 	const session = await auth()
-	const profile = await getProfileData()
+	const profile = await getProfileData(session?.user.profileId ?? '')
 
 	if (profile) {
 		redirect(`/${profile.id}`)

@@ -1,15 +1,12 @@
-import { auth } from '@/lib/auth'
 import { Button } from '../ui/Button'
 import { manageAuth } from '@/actions/manage-auth'
-import { getProfileData } from '@/server/getProfileData'
 import Link from 'next/link'
+import { auth } from '@/lib/auth'
 
 export const Header = async () => {
 	const session = await auth()
 
-	const profile = await getProfileData()
-
-	const redirectLink = session ? `/${profile?.id}` : '/criar'
+	const redirectLink = session ? `/${session.user.profileId}` : '/criar'
 
 	return (
 		<header className='bg-background-primary border-border-primary fixed top-0 right-0 left-0 z-50 w-screen border border-b'>

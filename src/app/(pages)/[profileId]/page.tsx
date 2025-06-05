@@ -13,9 +13,10 @@ export default async function Profile({
 	params: Promise<{ profileId: string }>
 }) {
 	const session = await auth()
+
 	const { profileId } = await params
 
-	const profileData = await getProfileData()
+	const profileData = await getProfileData(profileId)
 
 	if (!profileData) {
 		return notFound()
